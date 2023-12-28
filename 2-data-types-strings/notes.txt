@@ -1,0 +1,6 @@
+## Primitive Data Types
+
+strings
+integer
+float
+boolean
