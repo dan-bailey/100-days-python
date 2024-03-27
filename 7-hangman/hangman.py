@@ -1,0 +1,155 @@
+import os
+import random
+
+def get_word():
+    # randomly select a word from a list
+    word_list = ["python", "java", "kotlin", "javascript"]
+    return (random.choice(word_list)).upper()
+
+def get_guess():
+    # get a letter from the user and return it
+    # probably could use some error trapping in here to ensure it's a letter
+    # and that it hasn't been guessed before, but this is a simple exercise in
+    # string manipulation and basic loops
+    return (input("Guess a letter: ")).upper()
+
+def print_gallows():
+    print("  +---+")
+    print("  |   |")
+    print("      |")
+    print("      |")
+    print("      |")
+    print("      |")
+    print("=========")
+
+def print_head():
+    print("  +---+")
+    print("  |   |")
+    print("  O   |")
+    print("      |")
+    print("      |")
+    print("      |")
+    print("=========")
+
+def print_body():
+    print("  +---+")
+    print("  |   |")
+    print("  O   |")
+    print("  |   |")
+    print("      |")
+    print("      |")
+    print("=========")
+
+def print_left_arm():
+    print("  +---+")
+    print("  |   |")
+    print("  O   |")
+    print(" /|   |")
+    print("      |")
+    print("      |")
+    print("=========")
+
+def print_right_arm( ):
+    print("  +---+")
+    print("  |   |")
+    print("  O   |")
+    print(" /|\  |")
+    print("      |")
+    print("      |")
+    print("=========")
+
+def print_left_leg():
+    print("  +---+")
+    print("  |   |")
+    print("  O   |")
+    print(" /|\  |")
+    print(" /    |")
+    print("      |")
+    print("=========")
+
+def print_right_leg():
+    print("  +---+")
+    print("  |   |")
+    print("  O   |")
+    print(" /|\  |")
+    print(" / \  |")
+    print("      |")
+    print("=========")
+    print("GAME OVER")
+
+def display_header(misses):
+    os.system("clear")
+    print("The word length is: " + word_length)
+    print("Letters guessed: " + guesses_list)
+    print("")
+    print("Your word so far: " + display_word)
+    print("")
+    if misses == 0:
+        print_gallows()
+    elif misses == 1:
+        print_head()
+    elif misses == 2:
+        print_body()
+    elif misses == 3:
+        print_left_arm()
+    elif misses == 4:
+        print_right_arm()
+    elif misses == 5:
+        print_left_leg()
+    elif misses == 6:
+        print_right_leg()
+        final_message = "GAME OVER - OW MY NECK"
+        end_condition = True
+
+def word_match(): 
+    if display_word == target_word:
+        final_message = "GAME OVER - YOU WIN"
+        end_condition = True
+
+def generate_blanks(count):
+    temp = ""
+    for x in range(int(count)):
+        temp = temp + "_"
+    return temp
+
+
+
+## clear the screen
+os.system("clear")
+
+## start game
+missed_guesses = 0
+end_condition = False
+target_word = get_word()
+guesses_list = "" # this starts as blanks, but will be filled in as the user incorrectly guesses letters
+word_length = str(len(target_word))
+display_word = generate_blanks(word_length) # this starts as blanks, but will be filled in as the user correctly guesses letters
+
+
+## Step one: display the header, get the guess, and add it to the list
+display_header(missed_guesses)
+print("")
+guess = get_guess()
+
+## Step two: check the guess against the word
+for letter in target_word:
+    if letter == guess:
+        # swap that letter in the display word
+        success = True
+        print (success)
+    else:
+        success = False
+        print (success)
+        guesses_list = guesses_list + guess + " "
+# if (success == False):
+    # missed_guesses += 1
+
+## Step three: check to see if at max guesses or if the word is complete
+    
+        
+## Error trapping
+print (target_word)
+print (word_length)
+print (display_word)
+print (str(missed_guesses))
+print (success)

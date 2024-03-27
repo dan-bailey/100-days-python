@@ -1,0 +1,13 @@
+1. set all game starting variables, including the word itself
+2. while game over = false, do the following
+    1. show the game display
+    2. take the guess
+        if the guess is already in the already-guessed list, ask again
+        if new guess, append to already-guessed list, then see if it's in the word
+        if it is in the word, replace each underscore with the guessed letter
+    3. check to see if guessed word is complete and equal to target word
+        if no, game over = false, game continues
+        if yes, game over = true, win condition is "winner"
+    4. check to see if the player has hung the person
+        if no, game over = false, game continues
+        if yes, game over = true, win condition is "ow my neck"
