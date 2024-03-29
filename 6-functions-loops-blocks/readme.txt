@@ -1,0 +1,1 @@
+This section of the coursework used a third-party site for training, but it wasn't super-necessary.  It covered functions, while loops, and code blocks.  All things covered in a Comp Sci 100 class.  Easy peasy.

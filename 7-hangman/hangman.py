@@ -98,13 +98,6 @@ def display_header(misses):
         print_left_leg()
     elif misses == 6:
         print_right_leg()
-        final_message = "GAME OVER - OW MY NECK"
-        end_condition = True
-
-def word_match(): 
-    if display_word == target_word:
-        final_message = "GAME OVER - YOU WIN"
-        end_condition = True
 
 def generate_blanks(count):
     temp = ""
@@ -119,37 +112,43 @@ os.system("clear")
 
 ## start game
 missed_guesses = 0
-end_condition = False
+end_condition = ""
 target_word = get_word()
 guesses_list = "" # this starts as blanks, but will be filled in as the user incorrectly guesses letters
 word_length = str(len(target_word))
 display_word = generate_blanks(word_length) # this starts as blanks, but will be filled in as the user correctly guesses letters
 
+while end_condition != "gameover":
+    ## Step one: display the header, get the guess, and add it to the list
+    display_header(missed_guesses)
+    print("")
+    guess = get_guess()
 
-## Step one: display the header, get the guess, and add it to the list
+    ## Step two: check the guess against the word
+    current_state = display_word
+    guesses_list = guesses_list + guess + " "
+    count = 0
+    for letter in target_word:
+        if letter == guess:
+            # convert to a list
+            display_list = list(display_word)
+            # replace the letter in the list
+            display_list[count] = guess
+            # convert back to a string
+            display_word = "".join(display_list)
+        count += 1
+    if current_state == display_word:
+        missed_guesses = missed_guesses + 1
+
+    ## Step three: check to see if at max guesses or if the word is complete
+    if missed_guesses == 6:
+        final_message = "GAME OVER - OW MY NECK"
+        end_condition = "gameover"
+
+    if display_word == target_word:
+        final_message = "GAME OVER - YOU WIN"
+        end_condition = "gameover"
+
 display_header(missed_guesses)
 print("")
-guess = get_guess()
-
-## Step two: check the guess against the word
-for letter in target_word:
-    if letter == guess:
-        # swap that letter in the display word
-        success = True
-        print (success)
-    else:
-        success = False
-        print (success)
-        guesses_list = guesses_list + guess + " "
-# if (success == False):
-    # missed_guesses += 1
-
-## Step three: check to see if at max guesses or if the word is complete
-    
-        
-## Error trapping
-print (target_word)
-print (word_length)
-print (display_word)
-print (str(missed_guesses))
-print (success)
+print (final_message)
