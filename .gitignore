@@ -1,4 +1,2 @@
 .DS_Store
-/venv/
-venv/
-/18-turtle/venv/
+*/venv/*
